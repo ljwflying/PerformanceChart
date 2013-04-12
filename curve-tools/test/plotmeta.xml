@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+                    <configure>
+                        <datameta>
+                            <name>throughtput</name>
+                            <source>./test/throughtput_datameta.xml</source>
+                        </datameta>
+                        
+                        <datameta>
+                            <name>delay</name>
+                            <source>./test/delay_datameta.xml</source>
+                        </datameta>    
+                        
+                        <plotdata>
+                            <name>all_throughtput</name>
+                            <meta>throughtput</meta>
+                            <source>./test/all_put_th.txt</source>
+                            <!-- ~tab/~space/xxxx -->
+                            <linesep>~space</linesep>
+                        </plotdata>
+                        
+                        <plotdata>
+                            <name>all_delay</name>
+                            <meta>delay</meta>
+                            <source>./test/all_put_delay.txt</source>
+                        </plotdata>                    
+                        
+                        <plot>
+                            <output>./test/throughtput.png</output>
+                            <title>throughtput</title>
+                            <data>all_throughtput</data>
+                            <index> time </index>
+                            <series>  dAvgTh </series>
+                            <series> tAvgTh</series>
+                            <xlabel> time </xlabel>
+                            <ylabel> ops/sec </ylabel>    
+                            <xticknum>20</xticknum>  
+                            <yticknum>20</yticknum>
+                            <xrotation>30</xrotation>
+                            <legendalpha>0.1</legendalpha>  
+                            <height>6</height>
+                            <width>8</width>
+                            <dpi>100</dpi>                       
+                        </plot>
+                        
+                        <plot>
+                            <output>./test/avgDelay.png</output>
+                            <title>AvgDelay</title>
+                            <data>all_throughtput</data>
+                            <index> time </index>
+                            <series>  dAvgTh </series>
+                            <series> dAvgLat</series>
+                            <xlabel> time </xlabel>
+			    <ylabel> </ylabel>
+			    <xrotation>30</xrotation>
+                        </plot>
+                        
+                        <plot>
+                            <output>./test/delay_dist.png</output>
+                            <title>delay distribution</title>
+                            <data>all_delay</data>
+                            <index> delay </index>
+                            <series>  kpercent</series>
+                        </plot>                                                
+                    </configure>

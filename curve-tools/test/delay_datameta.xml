@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configure>
+	<entry>
+		<index>0</index>
+		<name>delay</name>
+		<unit>20ms</unit>
+	</entry>
+	<entry>
+		<index>1</index>
+		<name>count</name>
+		<unit></unit>
+	</entry>	
+	<entry>
+		<index>2</index>
+		<name>kpercent</name>
+		<unit></unit>
+	</entry>	
+</configure>		
