@@ -1,0 +1,304 @@
+﻿<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Do not modify this file directly.  Instead, copy entries that you -->
+<!-- wish to modify from this file into core-site.xml and change them -->
+<!-- there.  If core-site.xml does not already exist, create it.      -->
+
+<configuration>
+<property>
+<name>ohive.bucket.name.regex</name>
+<value>[A-Za-z0-9_]{0,64}</value>
+</property>
+
+<!--- global properties -->
+  <property>
+    <name>ohive.rootdir</name>
+    <value>hdfs://nd1-rack2-cloud:9300/ohive</value>
+    <description>The directory shared by region servers and into
+    which RockStor persists.  The URL should be 'fully-qualified'
+    to include the filesystem scheme.  For example, to specify the
+    HDFS directory '/ohive' where the HDFS instance's namenode is
+    running at namenode.example.org on port 9000, set this value to:
+    hdfs://namenode.example.org:9000/hbase.  By default RockStor writes
+    into /tmp.  Change this configuration else all data will be lost
+    on machine restart.
+    </description>
+  </property>
+  <!--	
+  <property skipInDoc="true">
+    <name>ohive.defaults.for.version</name>
+    <value>0.2.1-BDE1B1</value>
+    <description>
+    This defaults file was compiled for version 0.2.1-BDE1B1. This variable is used
+    to make sure that a user doesn't have an old version of ohive-default.xml on the
+    classpath.
+    </description>
+   </property>
+  -->	
+          <property>
+		<name>ohive.compact.reduce.number</name>
+		<value>4</value>
+	</property>
+
+	<property>
+		<name>ohive.compact.lowUsage</name>
+		<value>50</value>
+	</property>
+
+	<property>
+		<name>ohive.compact.sleepBeforeClean</name>
+		<value>120000</value>
+	</property>
+
+
+  <!-- hbase conf -->
+  <!--	<property>
+		<name>hbase.master</name>
+		<value>nd1-rack2-cloud:61100</value>
+	</property>
+-->
+	<property>
+		<name>hbase.zookeeper.quorum</name>
+		<value>nd3-rack2-cloud,nd4-rack2-cloud,nd5-rack2-cloud</value>
+	</property>
+
+	<property>
+		<name>hbase.zookeeper.property.clientPort</name>
+		<value>12161</value>
+	</property>
+
+	<property>		<name>hbase.client.write.buffer</name>		<value>2048000</value>		<description>Default size of the HTable clien write buffer in bytes.			A bigger buffer takes more memory -- on both the client and server			side since server instantiates the passed write buffer to process			it -- but a larger buffer size reduces the number of RPCs made.			For an estimate of server-side memory-used, evaluate			hbase.client.write.buffer * hbase.regionserver.handler.count		</description>	</property>
+
+  <!-- basic conf-->
+  <property>
+  <name>ohive.ohiveserver.listenPort</name>
+  <value>48284</value>
+  </property>
+
+  <property>
+    <name>ohive.host.name</name>
+    <value></value>
+  </property>
+
+  <property>
+    <name>ohive.max.size.gb</name>
+    <value>1</value>
+  </property>
+  
+<property>
+    <name>ohive.reader.cache.num</name>
+    <value>1024</value>
+  </property>
+
+  
+	<property>
+		<name>ohive.memory.allocator.class</name>
+		<value>com.hanborq.ohive.memory.DefaultAllocator</value>
+		<description>
+			default: com.hanborq.ohive.memory.DefaultAllocator
+      </description>
+	</property>
+
+<property>
+    <name>ohive.netty.connect.num</name>
+    <value>1</value>
+  </property>
+
+
+<!-- init table -->
+  <property>
+    <name>ohive.hbase.cache.num</name>
+    <value>20</value>
+  </property>
+
+      <property>
+        <name>ohive.table.cf.compressionType</name>
+          <value>NONE</value>
+            <description>
+              LZO,GZ,NONE
+                </description>
+                  </property>
+
+  <property>
+    <name>ohive.table.cf.compactionCompressType</name>
+      <value>NONE</value>
+        <description>
+          LZO,GZ,NONE
+            </description>
+              </property>
+
+<!-- task and thread -->
+  <property>
+      <name>ohive.threads.sleepInterval</name>
+      <value></value>
+      <description>
+       default: 1
+      </description>
+  </property>
+
+  <property>
+      <name>ohive.threads.num.httpReader</name>
+      <value>8</value>
+      <description>
+       default: 
+      </description>
+  </property>
+
+  <property>
+      <name>ohive.threads.num.httpWriter</name>
+      <value>8</value>
+      <description>
+       default: 
+      </description>
+  </property>
+
+  <property>
+      <name>ohive.threads.num.metaReader</name>
+      <value>8</value>
+      <description>
+       default: 
+      </description>
+  </property>
+
+  <property>
+      <name>ohive.threads.num.metaWriter</name>
+      <value>14</value>
+      <description>
+       default: 
+      </description>
+  </property>
+
+  <property>
+      <name>ohive.threads.num.chunkReader</name>
+      <value>8</value>
+      <description>
+       default: 
+      </description>
+  </property>
+
+  <property>
+      <name>ohive.threads.num.chunkWriter</name>
+      <value>8</value>
+      <description>
+       default: 
+      </description>
+  </property>
+
+  <property>
+      <name>ohive.threads.num.timeout</name>
+      <value>1</value>
+      <description>
+       default: 
+      </description>
+  </property>
+
+  <property>
+      <name>ohive.task.timeout</name>
+      <value>300000</value>
+      <description>
+       default: 5 min
+      </description>
+  </property>
+  
+    <property>
+      <name>ohive.netty.timeout</name>
+      <value>10000</value>
+      <description>
+       default: 10 s
+      </description>
+  </property>
+
+<!-- monitor -->
+  <property>
+      <name>ohive.monitor.interval</name>
+      <value>120000</value>
+      <description>
+       default: 2mins
+      </description>
+  </property>
+
+  <property>
+      <name>ohive.monitor.historyNum</name>
+      <value>15</value>
+      <description>
+       default: 15, 30mins
+      </description>
+  </property>
+
+  <property>
+      <name>ohive.monitor.tsUnit</name>
+      <value>20</value>
+      <description>
+       default: 20ms
+      </description>
+  </property>
+
+	<!-- ohive zookeeper configuration -->
+  <property>
+    <name>ohive.zookeeper.quorum.addr</name>
+    <value>nd3-rack2-cloud:12161,nd4-rack2-cloud:12161,nd5-rack2-cloud:12161</value>
+  </property>
+
+<!-- aaa configuration -->
+  <property>
+    <name>aaa.host</name>
+    <value></value>
+  </property>
+
+<!-- memcached configuration -->  
+  <property>
+    <name>memcached.quorum</name>
+    <value></value>
+  </property>
+
+        <property>
+                <name>ohive.auth.types</name>
+                <value>OHIVE0:com.hanborq.ohive.webifc.auth.AnonymousAuthAlgorithm;OHIVE1:com.hanborq.ohive.webifc.auth.SimpleMySqlAuthAlgorithm
+                </value>
+                <description>OHIVE0:com.hanborq.ohive.webifc.auth.AnonymousAuthAlgorithm;OHIVE1:com.hanborq.ohive.webifc.auth.SimpleMySqlAuthAlgorithm;OHIVE2
+:com.hanborq.ohive.webifc.auth.AaaAuthAlgorithm
+                </description>
+        </property>
+  
+  
+ 
+ <!-- Az configuration -->
+<property>
+	<name>ohive.localAzName</name>
+	<value>AZ1</value>
+</property> 
+
+ <!--  <property>
+    <name>ohive.az.addr</name>
+    <value>AZ1#10.24.1.44:48282;AZ2#10.24.1.47:48282;</value>
+  </property> 
+-->
+
+<!--DataNode Weight configuration -->
+<property>
+    <name>ohive.datanode.spacewgt</name>
+    <value>75</value>	
+</property>
+
+<property>
+    <name>ohive.datanode.iowgt</name>
+    <value>25</value>	
+</property> 	
+
+<property>
+    <name>ohive.datanode.memwgt</name>
+    <value>15</value>	
+</property>
+ 	
+<property>
+    <name>ohive.datanode.cpuwgt</name>
+    <value>25</value>	
+</property> 	
+ 	
+<property>
+    <name>ohive.datanode.scale</name>
+    <value>10000</value>	
+</property> 	  
+ 
+</configuration>
